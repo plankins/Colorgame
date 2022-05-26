@@ -35,15 +35,18 @@ public class Game {
 
 
         while (running) {
+            /*
             long now = System.nanoTime();
 
             if((now-lastloop)/1000000 >= 10){
-                frame.repaint();
+              */
+            frame.repaint();
 
-                lastloop = now;
+                //lastloop = now;
+            running = false;
             }
         }
-    }
+    //}
 
     public static Game getGame(){
         return game;

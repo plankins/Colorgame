@@ -67,13 +67,8 @@ public class Board {
             Color clicked = getColor(x, y);
             selectedColor = clicked;
             check(0, 0);
+            Game.getGame().run();
 
-            for (int i = 0; i < xunits; i++) {
-                for (int j = 0; j < yunits; j++) {
-                    checked[i][j] = 0;
-                }
-
-            }
         }
     }
 
@@ -81,33 +76,48 @@ public class Board {
         Color startColor = getColor(0, 0);
         int xx, yy;
 
-        xx = x-1;
-        yy = y;
-        if (getColor(xx, yy) == startColor && checked[x][y] == 3) {
-            check(xx, yy);
-            checked[xx][yy] = 1;
-        }
 
-        xx = x;
-        yy = y-1;
-        if (getColor(xx, yy) == startColor && checked[x][y] == 4) {
-            check(xx, yy);
-            checked[xx][yy] = 1;
-        }
-
+        //rechts
         xx = x+1;
         yy = y;
-        if (getColor(xx, yy) == startColor && checked[x][y] == 0) {
+        if (getColor(xx, yy) == startColor) {
             check(xx, yy);
-            checked[xx][yy] = 1;
         }
 
+        //unten
         xx = x;
         yy = y+1;
-        if (getColor(xx, yy) == startColor && checked[x][y] == 0) {
+        if (getColor(xx, yy) == startColor) {
             check(xx, yy);
-            checked[xx][yy] = 1;
         }
+
+
+
+        set(x, y, selectedColor);
+        check2(x,y);
+
+    }
+
+    public void check2(int x, int y) {
+        Color startColor = getColor(0, 0);
+        int xx, yy;
+
+
+        //oben
+        xx = x;
+        yy = y-1;
+        if (getColor(xx, yy) == startColor) {
+            check2(xx, yy);
+        }
+
+        //links
+        xx = x-1;
+        yy = y;
+        if (getColor(xx, yy) == startColor) {
+            check2(xx, yy);
+        }
+
+
 
 
 
@@ -115,6 +125,8 @@ public class Board {
 
 
     }
+
+
 }
 
 
